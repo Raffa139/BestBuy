@@ -10,7 +10,7 @@ class Menu:
         print("\nMenu:")
 
         for i, command in enumerate(self.commands):
-            print(f"{i}. {command['title']}")
+            print(f"{i + 1}. {command['title']}")
 
     def add_command(self, title, action):
         self.commands.append({
@@ -24,10 +24,10 @@ class Menu:
         while True:
             self.print_menu()
 
-            command = input(f"\nEnter choice (0-{max_command_index}): ").strip()
+            command = input(f"\nEnter choice (1-{max_command_index + 1}): ").strip()
 
             try:
-                command_index = int(command)
+                command_index = int(command) - 1
 
                 if command_index < 0 or command_index > max_command_index:
                     raise ValueError()
