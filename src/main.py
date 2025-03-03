@@ -23,15 +23,26 @@ def make_order(store):
 
     shopping_list = []
     while True:
-        product_index = input("Which product # do you want? ")
-        quantity = input("What amount do you want? ")
+        try:
+            product_index = input("Which product # do you want? ")
+            quantity = input("What amount do you want? ")
 
-        if not product_index:
-            break
+            if not product_index:
+                break
 
-        shopping_list.append(
-            (store.get_product(int(product_index) - 1), ProductQuantity(int(quantity))))
-        print("\nProduct added to list!\n")
+            product = store.get_product(int(product_index) - 1)
+            product_quantity = ProductQuantity(int(quantity))
+
+            if not product:
+                raise ValueError(f"No product for #{product_index} found")
+
+            if not product.has_enough_quantity(product_quantity):
+                raise ValueError(f"Quantity larger than what exists")
+
+            shopping_list.append((product, product_quantity))
+            print("\nProduct added to list!\n")
+        except ValueError as e:
+            print(f"\nError adding product! Details: {e}.\n")
 
     total_payment = store.order(shopping_list)
     print(f"\nOrder made! Total payment: ${total_payment}")

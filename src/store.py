@@ -21,7 +21,7 @@ class Store:
         return [product for product in self.products if product.is_active()]
 
     def get_product(self, index):
-        if 0 > index >= len(self.products):
+        if index < 0 or index >= len(self.products):
             return None
 
         return self.products[index]

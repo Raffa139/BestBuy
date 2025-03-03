@@ -28,6 +28,9 @@ class Product:
     def show(self):
         return f"{self.name.value}, Price: ${self.price.value}, Quantity: {self.quantity.value}"
 
+    def has_enough_quantity(self, quantity):
+        return self.quantity.value >= quantity.value
+
     def buy(self, quantity):
         self.quantity.subtract(quantity)
         return self.price.value * quantity.value
