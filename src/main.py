@@ -37,12 +37,12 @@ def make_order(store):
                 raise ValueError(f"No product for #{product_index} found")
 
             if not product.has_enough_quantity(product_quantity):
-                raise ValueError(f"Quantity larger than what exists")
+                raise ValueError("Quantity larger than what exists")
 
             shopping_list.append((product, product_quantity))
             print("\nProduct added to list!\n")
-        except ValueError as e:
-            print(f"\nError adding product! Details: {e}.\n")
+        except ValueError as error:
+            print(f"\nError adding product! Details: {error}.\n")
 
     total_payment = store.order(shopping_list)
     print(f"\nOrder made! Total payment: ${total_payment}")
