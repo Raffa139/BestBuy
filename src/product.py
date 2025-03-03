@@ -1,5 +1,10 @@
+from product_name import ProductName
+from product_price import ProductPrice
+from product_quantity import ProductQuantity
+
+
 class Product:
-    def __init__(self, name, *, price, quantity):
+    def __init__(self, name, price, quantity):
         self.name = name
         self.price = price
         self.quantity = quantity
@@ -21,25 +26,26 @@ class Product:
         self.active = False
 
     def show(self):
-        return f"{self.name}, Price: {self.price}, Quantity: {self.quantity}"
+        return f"{self.name.value}, Price: {self.price.value}, Quantity: {self.quantity.value}"
 
     def buy(self, quantity):
-        self.quantity -= quantity
-        return self.price * quantity
+        self.quantity.subtract(quantity)
+        return self.price.value * quantity.value
 
 
 def main():
-    bose = Product("Bose QuietComfort Earbuds", price=250, quantity=500)
-    mac = Product("MacBook Air M2", price=1450, quantity=100)
+    bose = Product(ProductName("Bose QuietComfort Earbuds"), ProductPrice(250),
+                   ProductQuantity(500))
+    mac = Product(ProductName("MacBook Air M2"), ProductPrice(1450), ProductQuantity(100))
 
-    print(bose.buy(50))
-    print(mac.buy(100))
+    print(bose.buy(ProductQuantity(50)))
+    print(mac.buy(ProductQuantity(100)))
     print(mac.is_active())
 
     print(bose.show())
     print(mac.show())
 
-    bose.set_quantity(1000)
+    bose.set_quantity(ProductQuantity(1000))
     print(bose.show())
 
 
