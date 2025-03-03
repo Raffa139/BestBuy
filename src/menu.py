@@ -7,7 +7,8 @@ class Menu:
         print(f"********** {self.title} **********")
 
     def print_menu(self):
-        print("\nMenu:")
+        print("\n   Menu")
+        print("   ----")
 
         for i, command in enumerate(self.commands):
             print(f"{i + 1}. {command['title']}")
