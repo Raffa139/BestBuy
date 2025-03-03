@@ -1,52 +1,49 @@
-commands = []
+class Menu:
+    def __init__(self, title):
+        self.title = title
+        self.commands = []
 
+    def print_title(self):
+        print(f"********** {self.title} **********")
 
-def print_title():
-    print("********** My Movies Database **********")
+    def print_menu(self):
+        print("\nMenu:")
 
+        for i, command in enumerate(self.commands):
+            print(f"{i}. {command['title']}")
 
-def print_menu():
-    print("\nMenu:")
+    def add_command(self, title, action):
+        self.commands.append({
+            "title": title,
+            "action": action
+        })
 
-    for i, command in enumerate(commands):
-        print(f"{i}. {command['title']}")
+    def get_command(self):
+        max_command_index = len(self.commands) - 1
 
+        while True:
+            self.print_menu()
 
-def add_command(title, action):
-    commands.append({
-        "title": title,
-        "action": action
-    })
+            command = input(f"\nEnter choice (0-{max_command_index}): ").strip()
 
+            try:
+                command_index = int(command)
 
-def get_command():
-    max_command_index = len(commands) - 1
+                if command_index < 0 or command_index > max_command_index:
+                    raise ValueError()
 
-    while True:
-        print_menu()
+                return command_index
+            except ValueError:
+                print(f"Invalid choice '{command}'")
 
-        command = input(f"\nEnter choice (0-{max_command_index}): ").strip()
+    def run_command(self, command_index):
+        print()
+        self.commands[command_index]["action"]()
+        input("\nPress enter to continue ")
 
-        try:
-            command_index = int(command)
+    def run(self):
+        self.print_title()
 
-            if command_index < 0 or command_index > max_command_index:
-                raise ValueError()
-
-            return command_index
-        except ValueError:
-            print(f"Invalid choice '{command}'")
-
-
-def run_command(command_index):
-    print()
-    commands[command_index]["action"]()
-    input("\nPress enter to continue ")
-
-
-def run():
-    print_title()
-
-    while True:
-        command = get_command()
-        run_command(command)
+        while True:
+            command = self.get_command()
+            self.run_command(command)

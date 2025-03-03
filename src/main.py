@@ -5,8 +5,7 @@ from product_name import ProductName
 from product_price import ProductPrice
 from product_quantity import ProductQuantity
 from store import Store
-
-import menu
+from menu import Menu
 
 
 def list_prodcuts(store):
@@ -22,6 +21,7 @@ def make_order(store):
 
 
 def start(store):
+    menu = Menu("Store Menu")
     menu.add_command("List all products in store", lambda: list_prodcuts(store))
     menu.add_command("Show total amount in store", lambda: show_total_quantity(store))
     menu.add_command("Make an order", lambda: make_order(store))
