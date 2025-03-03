@@ -20,6 +20,12 @@ class Store:
     def get_all_active_products(self):
         return [product for product in self.products if product.is_active()]
 
+    def get_product(self, index):
+        if 0 > index >= len(self.products):
+            return None
+
+        return self.products[index]
+
     def order(self, shopping_list):
         return sum([product.buy(quantity) for product, quantity in shopping_list])
 

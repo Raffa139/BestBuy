@@ -26,7 +26,7 @@ class Product:
         self.active = False
 
     def show(self):
-        return f"{self.name.value}, Price: {self.price.value}, Quantity: {self.quantity.value}"
+        return f"{self.name.value}, Price: ${self.price.value}, Quantity: {self.quantity.value}"
 
     def buy(self, quantity):
         self.quantity.subtract(quantity)

@@ -9,15 +9,32 @@ from menu import Menu
 
 
 def list_prodcuts(store):
-    print("List all products in store")
+    for i, product in enumerate(store.get_all_active_products()):
+        print(f"{i + 1}. {product.show()}")
 
 
 def show_total_quantity(store):
-    print("Show total amount in store")
+    print(f"Total of {store.get_total_quantity()} items in store")
 
 
 def make_order(store):
-    print("Make an order")
+    list_prodcuts(store)
+    print("\nWhen you want to finish order, enter empty text.")
+
+    shopping_list = []
+    while True:
+        product_index = input("Which product # do you want? ")
+        quantity = input("What amount do you want? ")
+
+        if not product_index:
+            break
+
+        shopping_list.append(
+            (store.get_product(int(product_index) - 1), ProductQuantity(int(quantity))))
+        print("\nProduct added to list!\n")
+
+    total_payment = store.order(shopping_list)
+    print(f"\nOrder made! Total payment: ${total_payment}")
 
 
 def start(store):
