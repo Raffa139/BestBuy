@@ -1,9 +1,9 @@
 import sys
 
-from product import Product
-from product_name import ProductName
-from product_price import ProductPrice
-from product_quantity import ProductQuantity
+from product.stocked_product import StockedProduct
+from product.product_name import ProductName
+from product.product_price import ProductPrice
+from product.product_quantity import ProductQuantity
 from store import Store
 from menu import Menu
 
@@ -90,9 +90,10 @@ def main():
     Initializes the store with products and starts the application.
     """
     product_list = [
-        Product(ProductName("MacBook Air M2"), ProductPrice(1450), ProductQuantity(100)),
-        Product(ProductName("Bose QuietComfort Earbuds"), ProductPrice(250), ProductQuantity(500)),
-        Product(ProductName("Google Pixel 7"), ProductPrice(500), ProductQuantity(250))
+        StockedProduct(ProductName("MacBook Air M2"), ProductPrice(1450), ProductQuantity(100)),
+        StockedProduct(ProductName("Bose QuietComfort Earbuds"), ProductPrice(250),
+                       ProductQuantity(500)),
+        StockedProduct(ProductName("Google Pixel 7"), ProductPrice(500), ProductQuantity(250))
     ]
 
     best_buy = Store(product_list)

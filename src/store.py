@@ -1,5 +1,5 @@
-from product import Product
-from product_quantity import ProductQuantity
+from product.product import Product
+from product.product_quantity import ProductQuantity
 
 
 class Store:
