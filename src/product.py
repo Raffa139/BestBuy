@@ -93,4 +93,8 @@ class Product:
             float: The total price of the purchase.
         """
         self.quantity.subtract(quantity)
+
+        if self.quantity.value == 0:
+            self.deactivate()
+
         return self.price.value * quantity.value
